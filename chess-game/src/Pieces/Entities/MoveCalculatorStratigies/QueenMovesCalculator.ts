@@ -1,7 +1,7 @@
+import Board from "../../../Board/Entities/Board";
 import IMoveCalculator from "./IMoveCalculator";
-import Board from "../../Board/Board";
-import MovementStatus from "../../MoveService/MovementStatus";
 import Piece from "../Piece";
+import MovementStatus from "../../../MoveService/MovementStatus";
 import BishopMovesCalculator from "./BishopMovesCalculator";
 import RookMovesCalculator from "./RookMovesCalculator";
 

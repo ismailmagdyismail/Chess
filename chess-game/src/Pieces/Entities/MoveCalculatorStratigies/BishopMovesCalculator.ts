@@ -1,9 +1,9 @@
-import Board from "../../Board/Board";
-import Position, { PositionBuilder } from "../../Board/Position";
+import Board from "../../../Board/Entities/Board";
 import IMoveCalculator from "./IMoveCalculator";
 import Piece from "../Piece";
-import MovementStatus from "../../MoveService/MovementStatus";
-import { createMovement } from "../../MoveService/MovementFactory";
+import Position, { PositionBuilder } from "../../../Board/Entities/Position";
+import { createMovement } from "../../../MoveService/MovementFactory";
+import MovementStatus from "../../../MoveService/MovementStatus";
 
 class BishopMovesCalculator implements IMoveCalculator {
   public getPossibleMoves(piece: Piece, board: Board): MovementStatus[] {

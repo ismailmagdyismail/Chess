@@ -1,7 +1,7 @@
-import Board from "../../Board/Board";
-import { PositionBuilder } from "../../Board/Position";
-import { createMovement } from "../../MoveService/MovementFactory";
-import MovementStatus from "../../MoveService/MovementStatus";
+import Board from "../../../Board/Entities/Board";
+import { PositionBuilder } from "../../../Board/Entities/Position";
+import { createMovement } from "../../../MoveService/MovementFactory";
+import MovementStatus from "../../../MoveService/MovementStatus";
 import Piece from "../Piece";
 import IMoveCalculator from "./IMoveCalculator";
 

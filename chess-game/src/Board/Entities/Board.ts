@@ -1,5 +1,5 @@
-import Piece from "../Pieces/Piece";
-import Position from "./Position";
+import Piece from "../../Pieces/Entities/Piece";
+import Position, { PositionBuilder } from "./Position";
 import CellStatus from "./CellStatus";
 
 const GRID_ROW_COUNT = 8;
@@ -18,7 +18,21 @@ class Board {
       }
     }
   }
-
+  public getRowSize(): number {
+    return this.grid.length;
+  }
+  public getColumnSize(): number {
+    return this.grid[0].length;
+  }
+  public getPieceAt(position: Position): Piece | undefined {
+    if (
+      this.getCellStatus(position).isOutOfBounds() ||
+      this.getCellStatus(position).isFree()
+    ) {
+      return undefined;
+    }
+    return this.grid[position.row][position.col];
+  }
   public getCellStatus(position: Position): CellStatus {
     if (
       position.row >= this.grid.length ||
@@ -46,6 +60,9 @@ class Board {
     }
     return undefined;
   }
+  public getIterator(): BoardIterator {
+    return new BoardIterator(this);
+  }
   public clone(): Board {
     const clonedBoard = new Board();
     for (let i = 0; i < this.grid.length; i++) {
@@ -59,6 +76,30 @@ class Board {
       }
     }
     return clonedBoard;
+  }
+}
+class BoardIterator {
+  private positionBuilder: PositionBuilder;
+  private board: Board;
+  public constructor(board: Board) {
+    this.positionBuilder = new PositionBuilder(new Position(0, 0), false);
+    this.board = board;
+  }
+  public hasNext(): boolean {
+    return !this.board.getCellStatus(this.current()).isOutOfBounds();
+  }
+  public current(): Position {
+    return this.positionBuilder.getCurrentPosition();
+  }
+  public next(): void {
+    this.positionBuilder.right();
+    if (
+      this.board
+        .getCellStatus(this.positionBuilder.getCurrentPosition())
+        .isOutOfBounds()
+    ) {
+      this.positionBuilder.down().resetHorizontal();
+    }
   }
 }
 export default Board;

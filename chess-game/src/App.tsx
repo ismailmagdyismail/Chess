@@ -11,8 +11,30 @@
 /// service 2- getValidMoves(board,piece) => is the strategy within itself whre every piece takes board as args
 /// position is a value objcet
 
+import BoardComponent from "./Board/Presentation/BoardComponent";
+import { useGameContext } from "./Game/GameContext";
+import Container from "./_components/container/Container";
+import ParagraphElement from "./_components/paragraphElement/ParagraphElement";
 function App() {
-  return <></>;
+  const { board, turn } = useGameContext();
+
+  return (
+    <Container
+      display="grid"
+      gridTemplateRows="auto 1fr"
+      padding="4.8rem"
+      gap={"0.5rem"}
+    >
+      <Container justifySelf="center">
+        <ParagraphElement
+          color="#964d22"
+          text={`${turn.pieceColor} player turn`}
+          fontSize={"2.4rem"}
+        />
+      </Container>
+      <BoardComponent board={board} />
+    </Container>
+  );
 }
 
 export default App;

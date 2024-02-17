@@ -1,7 +1,7 @@
 import { PieceType } from "./PieceType";
-import Board from "../Board/Board";
+import Board from "../../Board/Entities/Board";
 import IMoveCalculator from "./MoveCalculatorStratigies/IMoveCalculator";
-import MovementStatus from "../MoveService/MovementStatus";
+import MovementStatus from "../../MoveService/MovementStatus";
 
 class Piece {
   private readonly id: number;

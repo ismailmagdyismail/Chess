@@ -1,5 +1,5 @@
-import Board from "../Board/Board";
-import Position from "../Board/Position";
+import Board from "../Board/Entities/Board";
+import Position from "../Board/Entities/Position";
 import { MovementType } from "./MovementStatus";
 
 function MoveService(

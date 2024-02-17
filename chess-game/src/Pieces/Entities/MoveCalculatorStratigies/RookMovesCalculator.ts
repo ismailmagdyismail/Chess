@@ -1,9 +1,9 @@
-import Board from "../../Board/Board";
+import Board from "../../../Board/Entities/Board";
 import IMoveCalculator from "./IMoveCalculator";
-import MovementStatus from "../../MoveService/MovementStatus";
 import Piece from "../Piece";
-import Position, { PositionBuilder } from "../../Board/Position";
-import { createMovement } from "../../MoveService/MovementFactory";
+import Position, { PositionBuilder } from "../../../Board/Entities/Position";
+import { createMovement } from "../../../MoveService/MovementFactory";
+import MovementStatus from "../../../MoveService/MovementStatus";
 
 class RookMovesCalculator implements IMoveCalculator {
   public getPossibleMoves(piece: Piece, board: Board): MovementStatus[] {

@@ -1,9 +1,9 @@
-import Board from "../../Board/Board";
-import { PositionBuilder } from "../../Board/Position";
-import { createMovement } from "../../MoveService/MovementFactory";
-import MovementStatus from "../../MoveService/MovementStatus";
-import Piece from "../Piece";
+import Board from "../../../Board/Entities/Board";
 import IMoveCalculator from "./IMoveCalculator";
+import Piece from "../Piece";
+import { PositionBuilder } from "../../../Board/Entities/Position";
+import { createMovement } from "../../../MoveService/MovementFactory";
+import MovementStatus from "../../../MoveService/MovementStatus";
 
 class PawnMovesCalculator implements IMoveCalculator {
   getPossibleMoves(piece: Piece, board: Board): MovementStatus[] {

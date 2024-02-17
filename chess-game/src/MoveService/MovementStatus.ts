@@ -1,4 +1,4 @@
-import Position from "../Board/Position";
+import Position from "../Board/Entities/Position";
 
 export type MovementType = "occupy" | "kill" | "invalid";
 

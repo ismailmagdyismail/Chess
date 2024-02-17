@@ -1,6 +1,6 @@
-import CellStatus from "../Board/CellStatus";
-import Position from "../Board/Position";
-import Piece from "../Pieces/Piece";
+import CellStatus from "../Board/Entities/CellStatus";
+import Position from "../Board/Entities/Position";
+import Piece from "../Pieces/Entities/Piece";
 import MovementStatus, { MovementType } from "./MovementStatus";
 
 function createMovementType(

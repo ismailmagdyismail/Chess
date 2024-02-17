@@ -42,17 +42,17 @@ export class PositionBuilder {
   }
   public left(): PositionBuilder {
     if (this.inverted) {
-      this.currentPosition.col--;
-    } else {
       this.currentPosition.col++;
+    } else {
+      this.currentPosition.col--;
     }
     return this;
   }
   public right(): PositionBuilder {
     if (this.inverted) {
-      this.currentPosition.col++;
-    } else {
       this.currentPosition.col--;
+    } else {
+      this.currentPosition.col++;
     }
     return this;
   }
@@ -74,6 +74,18 @@ export class PositionBuilder {
   public leftDownwardDigonal(): PositionBuilder {
     this.left();
     this.down();
+    return this;
+  }
+  public resetHorizontal(): PositionBuilder {
+    while (this.currentPosition.col > 0) {
+      this.left();
+    }
+    return this;
+  }
+  public resetVertical(): PositionBuilder {
+    while (this.currentPosition.row > 0) {
+      this.down();
+    }
     return this;
   }
 }
