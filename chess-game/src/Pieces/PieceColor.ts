@@ -1,0 +1,1 @@
+type PieceColor = "white" | "black";
