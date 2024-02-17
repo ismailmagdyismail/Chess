@@ -41,19 +41,22 @@ export class PositionBuilder {
     return this;
   }
   public left(): PositionBuilder {
-    if (this.inverted) {
-      this.currentPosition.col++;
-    } else {
-      this.currentPosition.col--;
-    }
+    // if (this.inverted) {
+    //   this.currentPosition.col++;
+    // } else {
+    //   this.currentPosition.col--;
+    // }
+    this.currentPosition.col--;
     return this;
   }
   public right(): PositionBuilder {
-    if (this.inverted) {
-      this.currentPosition.col--;
-    } else {
-      this.currentPosition.col++;
-    }
+    // if (this.inverted) {
+    //   this.currentPosition.col--;
+    // } else {
+    //   this.currentPosition.col++;
+    // }
+    this.currentPosition.col++;
+
     return this;
   }
   public rightUpwardDiagonal(): PositionBuilder {

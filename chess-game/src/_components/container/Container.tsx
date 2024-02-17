@@ -52,6 +52,7 @@ interface Props {
   right?: CSSProperties["right"];
   left?: CSSProperties["left"];
   bottom?: CSSProperties["bottom"];
+  key?: string;
 }
 function Container(props: Props) {
   const style: CSSProperties = props.customStyles || {
@@ -111,6 +112,7 @@ function Container(props: Props) {
   }
   return (
     <div
+      key={props.key}
       style={style}
       onClick={props.onClick}
       className={props.className || ""}

@@ -9,6 +9,6 @@ interface Props {
 
 function PieceComponent(props: Props) {
   const icon: ReactNode = createIconComponent(props.piece);
-  return <Container display="">{icon}</Container>;
+  return <Container fontSize={"4.2rem"}>{icon}</Container>;
 }
 export default PieceComponent;

@@ -22,17 +22,19 @@ function App() {
     <Container
       display="grid"
       gridTemplateRows="auto 1fr"
-      padding="4.8rem"
-      gap={"0.5rem"}
+      gap={"1.2rem"}
+      padding={"4.2rem"}
     >
-      <Container justifySelf="center">
+      <Container justifySelf="center" alignSelf="end">
         <ParagraphElement
           color="#964d22"
           text={`${turn.pieceColor} player turn`}
           fontSize={"2.4rem"}
         />
       </Container>
-      <BoardComponent board={board} />
+      <Container display="grid">
+        <BoardComponent board={board} />
+      </Container>
     </Container>
   );
 }

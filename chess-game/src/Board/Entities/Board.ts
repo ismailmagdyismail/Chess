@@ -1,22 +1,38 @@
 import Piece from "../../Pieces/Entities/Piece";
 import Position, { PositionBuilder } from "./Position";
 import CellStatus from "./CellStatus";
+import { BOARD_COL_COUNT, BOARD_ROW_COUNT } from "../../Game/constants";
 
-const GRID_ROW_COUNT = 8;
-const GRID_COLUMN_COUNT = 8;
 /// Position data is leaking here
 
 class Board {
   private readonly grid: (Piece | undefined)[][];
 
   public constructor() {
-    this.grid = new Array(GRID_ROW_COUNT);
+    this.grid = new Array(BOARD_ROW_COUNT);
     for (let i = 0; i < this.grid.length; i++) {
-      this.grid[i] = new Array(GRID_COLUMN_COUNT);
+      this.grid[i] = new Array(BOARD_COL_COUNT);
       for (let j = 0; j < this.grid[i].length; j++) {
         this.grid[i][i] = undefined;
       }
     }
+  }
+  public putPieceAt(piece: Piece, position: Position) {
+    if (this.getCellStatus(position).isOutOfBounds()) {
+      return;
+    }
+    this.grid[position.row][position.col] = piece;
+  }
+  public movePieceTo(piece: Piece, distination: Position) {
+    const oldPosition = this.getPiecePosition(piece.getId());
+    if (
+      this.getCellStatus(distination).isOutOfBounds() ||
+      oldPosition === undefined
+    ) {
+      return;
+    }
+    this.grid[distination.row][distination.col] = piece;
+    this.grid[oldPosition.row][oldPosition.col] = undefined;
   }
   public getRowSize(): number {
     return this.grid.length;

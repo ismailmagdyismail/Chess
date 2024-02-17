@@ -39,7 +39,7 @@ class PawnMovesCalculator implements IMoveCalculator {
     const moveUpLeft = createMovement(
       piece,
       upLeft,
-      board.getCellStatus(upRight),
+      board.getCellStatus(upLeft),
     );
     if (moveUpLeft.isKill()) {
       movements.push(moveUpLeft);
@@ -48,8 +48,20 @@ class PawnMovesCalculator implements IMoveCalculator {
       movements.push(moveUpRight);
     }
     const moveUp = createMovement(piece, up, board.getCellStatus(up));
-    movements.push(moveUp);
-    return movements;
+    if (!moveUp.isKill()) {
+      movements.push(moveUp);
+    }
+    return movements.filter((move) => {
+      const outOfBounds = board
+        .getCellStatus(move.getDistination())
+        .isOutOfBounds();
+      const friendly = board
+        .getPieceAt(move.getDistination())
+        ?.isSameTeam(piece.getColor());
+      if (!outOfBounds && !friendly) {
+        return move;
+      }
+    });
   }
 }
 export default PawnMovesCalculator;

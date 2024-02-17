@@ -9,20 +9,17 @@ class MovementStatus {
     this.distination = distination;
     this.movementType = movementType;
   }
-  public getMovementColor(): string {
-    if (this.movementType === "occupy") {
-      return "blue";
-    }
-    if (this.movementType === "kill") {
-      return "red";
-    }
-    return "transperant";
-  }
   public isKill(): boolean {
     return this.movementType === "kill";
   }
+  public isInvalid(): boolean {
+    return this.movementType === "invalid";
+  }
   public getDistination(): Position {
     return this.distination;
+  }
+  public getMovementType(): MovementType {
+    return this.movementType;
   }
 }
 

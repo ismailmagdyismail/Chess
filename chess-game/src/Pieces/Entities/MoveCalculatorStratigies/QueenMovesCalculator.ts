@@ -11,7 +11,17 @@ class QueenMovesCalculator implements IMoveCalculator {
       new BishopMovesCalculator().getPossibleMoves(piece, board);
     const rookLikeMovements: MovementStatus[] =
       new RookMovesCalculator().getPossibleMoves(piece, board);
-    return [...bishopLikeMovements, ...rookLikeMovements];
+    return [...bishopLikeMovements, ...rookLikeMovements].filter((move) => {
+      const outOfBounds = board
+        .getCellStatus(move.getDistination())
+        .isOutOfBounds();
+      const friendly = board
+        .getPieceAt(move.getDistination())
+        ?.isSameTeam(piece.getColor());
+      if (!outOfBounds && !friendly) {
+        return move;
+      }
+    });
   }
 }
 

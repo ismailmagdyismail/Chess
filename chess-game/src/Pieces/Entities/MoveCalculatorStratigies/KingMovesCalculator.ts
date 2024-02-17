@@ -26,11 +26,64 @@ class KingMovesCalculator implements IMoveCalculator {
       .left()
       .getCurrentPosition();
 
+    const rightUpwardDiagonal = new PositionBuilder(initialPosition, inverted)
+      .rightUpwardDiagonal()
+      .getCurrentPosition();
+    const leftUpwardDiagonal = new PositionBuilder(initialPosition, inverted)
+      .leftUpwardDiagonal()
+      .getCurrentPosition();
+    const rightDownwardDiagonal = new PositionBuilder(initialPosition, inverted)
+      .rightDownwardDiagonal()
+      .getCurrentPosition();
+    const leftDownwardDigonal = new PositionBuilder(initialPosition, inverted)
+      .leftDownwardDigonal()
+      .getCurrentPosition();
+
     const upMove = createMovement(piece, up, board.getCellStatus(up));
     const rightMove = createMovement(piece, right, board.getCellStatus(right));
     const downMove = createMovement(piece, down, board.getCellStatus(down));
     const leftMove = createMovement(piece, left, board.getCellStatus(left));
-    return [upMove, rightMove, downMove, leftMove];
+    const upRightMove = createMovement(
+      piece,
+      rightUpwardDiagonal,
+      board.getCellStatus(up),
+    );
+    const upLeftMove = createMovement(
+      piece,
+      leftUpwardDiagonal,
+      board.getCellStatus(right),
+    );
+    const downRightMove = createMovement(
+      piece,
+      rightDownwardDiagonal,
+      board.getCellStatus(down),
+    );
+    const downLeftMove = createMovement(
+      piece,
+      leftDownwardDigonal,
+      board.getCellStatus(left),
+    );
+
+    return [
+      upMove,
+      rightMove,
+      downMove,
+      leftMove,
+      upRightMove,
+      upLeftMove,
+      downRightMove,
+      downLeftMove,
+    ].filter((move) => {
+      const outOfBounds = board
+        .getCellStatus(move.getDistination())
+        .isOutOfBounds();
+      const friendly = board
+        .getPieceAt(move.getDistination())
+        ?.isSameTeam(piece.getColor());
+      if (!outOfBounds && !friendly) {
+        return move;
+      }
+    });
   }
 }
 export default KingMovesCalculator;

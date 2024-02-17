@@ -102,7 +102,17 @@ class KnightMovesCalculator implements IMoveCalculator {
       moveRightDown,
       moveLeftUp,
       moveLeftDown,
-    ];
+    ].filter((move) => {
+      const outOfBounds = board
+        .getCellStatus(move.getDistination())
+        .isOutOfBounds();
+      const friendly = board
+        .getPieceAt(move.getDistination())
+        ?.isSameTeam(piece.getColor());
+      if (!outOfBounds && !friendly) {
+        return move;
+      }
+    });
   }
 }
 

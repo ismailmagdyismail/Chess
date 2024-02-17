@@ -21,7 +21,7 @@ class RookMovesCalculator implements IMoveCalculator {
       initialPosition,
       piece,
       board,
-      (positionBuilder: PositionBuilder) => positionBuilder.right(),
+      (positionBuilder: PositionBuilder) => positionBuilder.left(),
     );
     const validUpCells = this.getValidCells(
       initialPosition,
@@ -56,12 +56,16 @@ class RookMovesCalculator implements IMoveCalculator {
     while (
       !board.getCellStatus(positionBuilder.getCurrentPosition()).isOutOfBounds()
     ) {
+      transition(positionBuilder);
       const move: MovementStatus = createMovement(
         piece,
         positionBuilder.getCurrentPosition(),
         board.getCellStatus(positionBuilder.getCurrentPosition()),
       );
-      transition(positionBuilder);
+      if (move.isInvalid()) {
+        break;
+      }
+      movements.push(move);
       if (move.isKill()) {
         break;
       }

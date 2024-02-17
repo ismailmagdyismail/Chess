@@ -37,7 +37,7 @@ class BishopMovesCalculator implements IMoveCalculator {
       initialPosition,
       board,
       (positionBuilder: PositionBuilder) =>
-        positionBuilder.leftUpwardDiagonal(),
+        positionBuilder.leftDownwardDigonal(),
     );
     return [
       ...validUpRightDiagonalCells,
@@ -60,16 +60,16 @@ class BishopMovesCalculator implements IMoveCalculator {
     while (
       !board.getCellStatus(positionBuilder.getCurrentPosition()).isOutOfBounds()
     ) {
+      positionTransition(positionBuilder);
       const move: MovementStatus = createMovement(
         piece,
         positionBuilder.getCurrentPosition(),
         board.getCellStatus(positionBuilder.getCurrentPosition()),
       );
-      if (move.getDistination().isEqual(initialPosition)) {
-        continue;
+      if (move.isInvalid()) {
+        break;
       }
       validPositions.push(move);
-      positionTransition(positionBuilder);
       if (move.isKill()) {
         break;
       }

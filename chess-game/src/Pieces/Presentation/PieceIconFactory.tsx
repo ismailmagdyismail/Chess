@@ -33,12 +33,12 @@ iconMapping.set("king", (pieceColor: PieceColor) => (
 
 function createIconComponent(piece: Piece | undefined): ReactNode {
   if (piece === undefined) {
-    return <></>;
+    return <div></div>;
   }
   const iconCreator: ((pieceColor: PieceColor) => ReactNode) | undefined =
     iconMapping.get(piece.getType());
   if (iconCreator === undefined) {
-    return <></>;
+    return <div></div>;
   }
   return iconCreator(piece.getColor());
 }
