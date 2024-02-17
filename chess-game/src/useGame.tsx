@@ -1,14 +1,24 @@
 import { useState } from "react";
-type Player = "player1" | "player2";
+// import Board from "./Board/Board";
+interface Player {
+  pieceColor: PieceColor;
+}
+const player1: Player = {
+  pieceColor: "white",
+};
+const player2: Player = {
+  pieceColor: "black",
+};
 function useGame() {
-  const [turn, setTurn] = useState<Player>("player1");
-  const [activePiece, setActivePiece] = useState;
+  const [turn, setTurn] = useState<Player>(player1);
+  // const [board, setBoard] = useState<Board>(new Board());
+  // const [activePiece, setActivePiece] = useState;
 
   function toggleTurn() {
-    if (turn === "player1") {
-      setTurn("player2");
+    if (turn.pieceColor === "white") {
+      setTurn(player2);
     } else {
-      setTurn("player1");
+      setTurn(player1);
     }
   }
 

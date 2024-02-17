@@ -8,34 +8,38 @@ class Piece {
   private readonly color: PieceColor;
   private readonly type: PieceType;
   private readonly moveCalculator: IMoveCalculator;
-  constructor(
+
+  public constructor(
     id: number,
     color: PieceColor,
     type: PieceType,
-    movesCalculatorFactory: (pieceType: PieceType) => IMoveCalculator,
+    moveCalculator: IMoveCalculator,
   ) {
     this.id = id;
     this.color = color;
     this.type = type;
-    this.moveCalculator = movesCalculatorFactory(this.type);
+    this.moveCalculator = moveCalculator;
   }
-  getPossibleMoves(board: Board): MovementStatus[] {
+  public getPossibleMoves(board: Board): MovementStatus[] {
     return this.moveCalculator.getPossibleMoves(this, board);
   }
-  isEqual(id: number): boolean {
+  public isEqual(id: number): boolean {
     return this.id === id;
   }
-  isSameTeam(other: PieceColor): boolean {
+  public isSameTeam(other: PieceColor): boolean {
     return this.getColor() === other;
   }
-  getColor(): PieceColor {
+  public getColor(): PieceColor {
     return this.color;
   }
-  getType(): PieceType {
+  public getType(): PieceType {
     return this.type;
   }
-  getId(): number {
+  public getId(): number {
     return this.id;
+  }
+  public clone(): Piece {
+    return new Piece(this.id, this.color, this.type, this.moveCalculator);
   }
 }
 export default Piece;

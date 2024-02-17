@@ -46,5 +46,19 @@ class Board {
     }
     return undefined;
   }
+  public clone(): Board {
+    const clonedBoard = new Board();
+    for (let i = 0; i < this.grid.length; i++) {
+      for (let j = 0; j < this.grid[i].length; j++) {
+        const cellContent = this.grid[i][j];
+        if (cellContent === undefined) {
+          clonedBoard.grid[i][j] = undefined;
+        } else {
+          clonedBoard.grid[i][j] = cellContent.clone();
+        }
+      }
+    }
+    return clonedBoard;
+  }
 }
 export default Board;
